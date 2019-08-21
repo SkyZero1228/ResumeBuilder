@@ -1,0 +1,102 @@
+<div class="resume-container">
+    <div class="editor-container">
+        <div class="header-container">
+            <img src="logo.png" alt="" />
+            <h3>Resume Editor </h3>
+        </div>
+        <div class="profile-bar-container">
+            <div class="text-row">
+                <div class="left">
+                    <span class="green mr-10">{{ $store.getters.progessValue.value }}%</span>
+                    <span class="light">Profile completeness</span>
+                </div>
+                <div class="right">
+                    <div class="rule-text" v-if="rules.length>0">
+                        <span class="green">+{{rules[0].value}}% </span>
+                        <span class="light">{{rules[0].label}}</span>
+                    </div>
+                    <div class="icon-container" @click="show_progress_rules = !show_progress_rules">
+                        <Icon type="help" fill="#D3001D" width="18" />
+                    </div>
+                </div>
+            </div>
+            <div class="profile-bar">
+                <div class="profile-inner-bar" :style="{transform: `scaleX(${$store.getters.progessValue.value/100})`}">
+                </div>
+            </div>
+            <div class="bar-description" :class="{active: show_progress_rules}">
+                <div class="rule-text" v-for="rule in rules">
+                    <span class="green">+{{rule.value}}% </span>
+                    <span class="light">{{rule.label}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="editor">
+            <PersonalInformation></PersonalInformation>
+            <ProfessionalSummary></ProfessionalSummary>
+            <div :key="section.id" v-for="section in sections">
+                <component :section="section" :is="section.component" />
+            </div>
+        </div>
+
+        <div class="add-sections-container">
+            <h3>Add Section</h3>
+            <div class="row">
+                <div class="col  col-links">
+                    <button :disabled="isAdded('ExtraCurricular')" class="link" @click="addSection('ExtraCurricular')">
+                        <Icon type="activities-section" classNames="path-blue-fill" /> <span>Extra-curricular
+                            Activities</span>
+                    </button>
+                    <button :disabled="isAdded('Hobbies')" class="link" @click="addSection('Hobbies')">
+                        <Icon type="hobbies-section" /> <span>Hobbies</span>
+                    </button>
+                    <button :disabled="isAdded('References')" class="link" @click="addSection('References')">
+                        <Icon type="references-section" /> <span>References</span>
+                    </button>
+                    <button :disabled="isAdded('TestScores')" class="link" @click="addSection('TestScores')">
+                        <Icon type="courses-section" classNames="path-blue-fill" /> <span>Test scores</span>
+                    </button>
+                </div>
+                <div class="col col-links">
+                    <button :disabled="isAdded('Courses')" class="link" @click="addSection('Courses')">
+                        <Icon type="courses-section" classNames="path-blue-fill" /> <span>Courses</span>
+                    </button>
+                    <button :disabled="isAdded('Internships')" class="link" @click="addSection('Internships')">
+                        <Icon type="internships-section" /> <span>Internships</span>
+                    </button>
+                    <button :disabled="isAdded('Languages')" class="link" @click="addSection('Languages')">
+                        <Icon type="languages-section" /> <span>Languages</span>
+                    </button>
+                    <button class="link" @click="addSection('Custom')">
+                        <Icon type="custom-section" /> <span>Custom Section</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="preview-container">
+        <span class="close-btn">
+            <Icon type="close" />
+        </span>
+        <div class="preview-area">
+            <div class="preview" ref="previewMedium">
+                <default-resume :scale="resumeScale" />
+                <!-- <div style="transform:scale(0.4); transform-origin:0 0">
+                    <DefaultResumeTemplate />
+                </div> -->
+            </div>
+            <div class="buttons-container">
+                <button class="btn-white">
+                    <Icon type="share" />
+                    Share
+                </button>
+                <button class="btn-blue" @click="onDownload">Download</button>
+                <button class="btn-white" @click="onPreview">
+                    <Icon type="preview" />
+                    Preview
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

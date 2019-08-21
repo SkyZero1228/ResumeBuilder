@@ -1,0 +1,230 @@
+$green: #D3001D;
+$gray: rgb(152, 161, 179);
+$gray-light: rgb(242, 245, 250);
+
+.resume-container {
+  display: flex;
+  height: 100vh;
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+
+    img {
+      width: 150px;
+    }
+
+    h3 {
+      opacity: 0.8;
+      font-weight: lighter;
+      margin: 0;
+      color: rgb(71, 11, 11);
+    }
+  }
+
+  .editor-container {
+    h1 {
+      text-align: center;
+      margin-bottom: 0;
+      font-weight: lighter;
+      color: #555;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    flex: 1;
+    overflow: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 60px;
+  }
+
+  .preview-container {
+    flex: 1;
+    background-color: #000000;
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    .close-btn {
+      position: absolute;
+      cursor: pointer;
+      top: 22px;
+      padding: 5px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      -webkit-box-align: center;
+      align-items: center;
+      justify-content: center;
+      color: rgb(255, 255, 255);
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 100%;
+      transition: all 0.3s ease;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    .preview-area {
+      display: flex;
+      padding-top: 60px;
+      flex-direction: column;
+      position: relative;
+      max-width: 1500px;
+      max-height: 2100px;
+      height: 100%;
+      width: 70%;
+
+      .preview {
+        border-radius: 10px;
+        box-sizing: border-box;
+        background: white;
+        position: relative;
+        height: 90%;
+        width: 100%;
+        overflow-y: auto;
+      }
+      .buttons-container {
+        display: flex;
+        bottom: 10px;
+        justify-content: space-between;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 20px 0;
+      }
+    }
+  }
+  .flip-list-move {
+    transition: transform 0.5s;
+  }
+}
+
+.profile-bar-container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 20px 0;
+
+  .mr-10 {
+    margin-right: 10px;
+  }
+  .green {
+    color: $green;
+  }
+  .light {
+    color: $gray;
+  }
+
+  .text-row {
+    display: flex;
+    margin: 10px 0;
+    justify-content: space-between;
+    width: 100%;
+    .left {
+    }
+    .right {
+      display: flex;
+      cursor: pointer;
+      .rule-text {
+        flex: 1;
+        margin-right: 10px;
+      }
+      .icon-container {
+        float: right;
+      }
+    }
+  }
+
+  .profile-bar {
+    height: 3px;
+    width: 100%;
+    background: #eee;
+    overflow: hidden;
+    position: relative;
+    .profile-inner-bar {
+      position: absolute;
+      left: 0;
+      background: $green;
+      top: 0;
+      height: 5px;
+      width: 100%;
+      transform-origin: 0 0;
+      transition: all 0.2s ease;
+    }
+  }
+
+  .bar-description {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: $gray-light;
+    z-index: 100;
+    box-sizing: border-box;
+    visibility: hidden;
+    opacity: 0;
+    padding: 10px 20px;
+    box-shadow: rgba(207, 214, 230, 0.7) 0px 14px 16px -10px, rgba(207, 214, 230, 0.12) 0px 20px 40px -8px;
+    border-radius: 0 0 5px 5px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    height: 140px;
+    transform: translateY(20px);
+    // transform-origin: 0 0;
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0px);
+      // transform: scaleY(100%);
+    }
+  }
+}
+
+.add-sections-container {
+  border-top: 1px solid #eee;
+  padding: 10px;
+}
+.col-links {
+  button {
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    transform-origin: 0;
+    &[disabled] {
+      opacity: 0.3;
+      transition: none;
+      &:hover {
+        transform: unset;
+      }
+    }
+    span {
+      margin-left: 10px;
+    }
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.rule-text {
+  padding: 5px 0;
+  width: 50%;
+  .green {
+    width: 30px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
+
+.bar-description {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
